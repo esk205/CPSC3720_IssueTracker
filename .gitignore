@@ -30,3 +30,25 @@
 *.exe
 *.out
 *.app
+test_IssueTracker
+asd
+test_issue
+test_local
+
+# Code Coverage
+*.gcda
+*.gcno
+
+# VS Code Folder
+*.vscode
+
+#mylazyscript
+*git.sh
+*runner.sh
+*tests.sh
+*parser.cpp
+
+# Generated Text Files
+users.txt
+issues.txt
+context.txt

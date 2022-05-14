@@ -1,0 +1,55 @@
+variables:
+  GIT_STRATEGY: clone
+
+build-tests:
+    stage: build
+    script:
+        - make test_issue
+
+build-server:
+   stage: build
+   script:
+      - make server
+   artifacts:
+      paths:
+         - issueServer
+
+build-client:
+   stage: build
+   script:
+      - make client
+   artifacts:
+      paths:
+         - issueClient
+
+coverage:
+    stage: test
+    script:
+      - make coverage
+    dependencies:
+      - build-tests
+    coverage: '/Lines executed:\d+ of \d+/'
+
+static:
+    stage: test
+    script:
+        - make static
+
+style:
+    stage: test
+    script:
+        - make style
+        
+memcheck:
+    stage: test
+    script:
+        make memcheck
+
+docs:
+    stage: deploy
+    script:
+        - make docs
+    artifacts:
+        paths:
+           - doxygen/html
+        expire_in: 14 days
